@@ -1,0 +1,7 @@
+Django==1.9.7
+Fabric==1.10.2
+django-webpack-loader==0.2.4
+django-development-fabfile
+
+# didn't install from dependencies
+pycrypto

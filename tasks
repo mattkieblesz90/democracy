@@ -1,0 +1,11 @@
+1. Run django on local dev with project structure setup.
+- fix runserver
+
+
+- project
+  - conf
+  - tmp
+  - devops
+  - src
+    - django
+    - react
