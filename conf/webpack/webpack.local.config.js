@@ -13,16 +13,16 @@ config.ip = ip
 
 // Use webpack dev server
 config.entry = {
-  SampleApp: [
+  DemocracyApp: [
     'webpack-dev-server/client?http://' + ip + ':3000',
     'webpack/hot/only-dev-server',
-    './../../src/react/SampleApp',
+    './../../src/react/DemocracyApp',
   ],
-  SampleApp2: [
-    'webpack-dev-server/client?http://' + ip + ':3000',
-    'webpack/hot/only-dev-server',
-    './../../src/react/SampleApp2',
-  ]
+  // SampleApp2: [
+  //   'webpack-dev-server/client?http://' + ip + ':3000',
+  //   'webpack/hot/only-dev-server',
+  //   './../../src/react/SampleApp2',
+  // ]
 }
 
 // override django's STATIC_URL for webpack bundles

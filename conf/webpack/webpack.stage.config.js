@@ -3,7 +3,7 @@ var BundleTracker = require('webpack-bundle-tracker')
 
 var config = require('./webpack.base.config.js')
 
-config.output.path = require('path').resolve('./../../src/django/static/bundles/stage/')
+config.output.path = require('path').resolve('src/django/static/bundles/stage/')
 
 config.plugins = config.plugins.concat([
   new BundleTracker({filename: 'conf/webpack/webpack-stats-stage.json'}),

@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'webpack_loader',
+    'react',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -124,6 +126,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'src/django/static'),
 ]
+
+
+# App settings
+
+# python-react
+REACT = {
+    'RENDER': DEBUG,
+    'RENDER_URL': 'http://127.0.0.1:9009/render',
+}
 
 try:
     from .local_settings import *  # flake8: noqa

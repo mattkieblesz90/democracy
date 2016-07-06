@@ -7,13 +7,13 @@ module.exports = {
 
   entry: {
     // Add as many entry points as you have container-react-components here
-    SampleApp: './../../src/react/SampleApp',
-    SampleApp2: './../../src/react/SampleApp2',
+    DemocracyApp: './../../src/react/DemocracyApp',
+    // SampleApp2: './../../src/react/SampleApp2',
     vendors: ['react'],
   },
 
   output: {
-      path: path.resolve('./../../src/django/static/bundles/local/'),
+      path: path.resolve('src/django/static/bundles/local/'),
       filename: "[name]-[hash].js"
   },
 

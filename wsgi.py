@@ -15,6 +15,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "conf.settings")
 sys.path.append('conf/')
 sys.path.append('devops/fabric/')
-sys.path.append('src/django/')
+# sys.path.append('src/django/')
+sys.path.append('src/django/apps')
 
 application = get_wsgi_application()
