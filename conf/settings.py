@@ -40,6 +40,10 @@ INSTALLED_APPS = [
 
     'webpack_loader',
     'react',
+    'core',
+    'forums',
+    'networks',
+    'users'
 ]
 
 MIDDLEWARE_CLASSES = [
