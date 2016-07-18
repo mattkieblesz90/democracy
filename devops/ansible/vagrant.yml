@@ -13,8 +13,8 @@
     - env_vars/vagrant.yml
   roles:
     # - base
-    - db
-    - rabbitmq
+    # - db
+    # - rabbitmq
     - web
     # - celery
     # - nginx

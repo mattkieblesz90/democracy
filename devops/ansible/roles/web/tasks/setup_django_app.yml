@@ -1,7 +1,7 @@
 ---
 
-- name: Install packages required by the Django app inside virtualenv
-  pip: virtualenv={{ virtualenv_path }} requirements={{ requirements_file }}
+# - name: Install packages required by the Django app inside virtualenv
+#   pip: virtualenv={{ virtualenv_path }} requirements={{ requirements_file }}
 
 # - name: Run the Django syncdb command
 #   django_manage:
@@ -12,6 +12,12 @@
 #   environment: "{{ django_environment }}"
 #   when: run_django_syncdb is defined and run_django_syncdb
 #   tags: django.syncdb
+
+- name: Ensure local tmp directory exists
+  file:
+    dest: "{{ project_path }}/tmp"
+    mode: 0744
+    state: directory
 
 - name: Run Django database migrations
   django_manage:

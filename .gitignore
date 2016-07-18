@@ -48,4 +48,5 @@ docs/api/
 .env
 
 # Django
+collected_static
 conf/local_settings.py
