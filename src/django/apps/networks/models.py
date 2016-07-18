@@ -13,3 +13,7 @@ class Network(models.Model):
 
 class NetworkTemplate(models.Model):
     pass
+
+
+class NetworkChannel(models.Model):
+    pass

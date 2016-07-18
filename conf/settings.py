@@ -20,7 +20,7 @@ BASE_DIR = os.path.join(CONF_DIR)
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y-($z@)bwfp0$_7&ds@tj7%r5e(x)9dyscsawgxd9i=)%1^7ii'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,7 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'tmp', 'db.sqlite3'),
-        'PASSWORD': "democracy",
+        'USER': os.environ['DATABASE_USER'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
     }
 }
 

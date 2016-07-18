@@ -11,6 +11,6 @@ def democracy_app(request):
     rendered = None
     rendered = render_component(
         os.path.join(components_path, 'DemocracyApp.jsx'),
-        # {'foo': 'bar'}
+        {'counters': 2}
     )
     return render_to_response('democracy_app.html', {'rendered': rendered})

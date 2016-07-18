@@ -1,0 +1,4 @@
+Host democracy
+    Hostname       gitlab.com
+    IdentityFile   ~/.ssh/deploy_key
+    IdentitiesOnly yes

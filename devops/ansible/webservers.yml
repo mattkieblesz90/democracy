@@ -10,7 +10,10 @@
   vars_files:
     - env_vars/base.yml
     - env_vars/{{ env }}.yml
-
+  vars_prompt:
+    - name: "ssh_pass"
+      prompt: "Enter your SSH password"
+      private: yes
   roles:
     - base
     - web

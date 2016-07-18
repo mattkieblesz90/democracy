@@ -1,0 +1,75 @@
+---
+
+- name: Ensure .ssh directory exists
+  file:
+    dest: "{{ ssh_key_file | dirname }}"
+    mode: 0700
+    state: directory
+
+- name: Install ssh key
+  copy:
+    content: "{{ ssh_key }}"
+    dest: "{{ ssh_key_file }}"
+    mode: 0600
+
+- name: Copy authorized key file
+  template:
+    src: authorized_keys
+    dest: "{{ ssh_key_file | dirname }}/authorized_keys"
+    mode: 0600
+  tags: deploy
+
+- name: Copy ssh config
+  template:
+    src: ssh_config
+    dest: "{{ ssh_key_file | dirname }}/config"
+    mode: 0664
+
+- name: Copy known hosts file
+  template:
+    src: known_hosts
+    dest: "{{ ssh_key_file | dirname }}/known_hosts"
+    mode: 0644
+  tags: deploy
+
+- name: Add ssh agent line to sudoers
+  lineinfile:
+    dest: "/etc/sudoers"
+    state: present
+    regexp: SSH_AUTH_SOCK
+    line: Defaults env_keep += "SSH_AUTH_SOCK"
+
+# TODO: Fix this, we want to be able to put password via prompt each time
+# or do ssh agent forwarding which didn't seem to work, at least with vagrant
+- name: Copy script for ssh key decryption
+  copy:
+    src: "../scripts/decrypt_ssh_key.py"
+    dest: "/tmp/decrypt_ssh_key.py"
+    mode: 0744
+
+- name: Decrypt ssh key
+  shell: python /tmp/decrypt_ssh_key.py {{ ssh_key_file }} "{{ ssh_pass }}"
+  tags: deploy
+
+- name: Decrypt ssh key
+  shell: openssl rsa -in ~/.ssh/democracy.key -out ~/.ssh/democracy.key
+
+# - name: Copy ssh agent startup script
+#   copy: src=../scripts/ssh_add_key.sh dest=/bin/start-ssh-agent mode=0744
+#   tags: deploy
+
+# - name: Start agent
+#   shell: start-ssh-agent
+#   tags: deploy
+
+# - shell: ssh-add -l
+#   register: result
+
+# - debug: var=result verbosity=2
+
+# - name: Enter ssh deploy key passphrase to global identies
+# - expect:
+#     command: ssh-add {{ ssh_key_file }}
+#     responses:
+#       '(?i):': "{{ ssh_pass }}"
+#   tags: deploy

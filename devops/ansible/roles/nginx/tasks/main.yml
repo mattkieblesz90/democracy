@@ -30,3 +30,15 @@
 
 - name: Ensure Nginx service is started
   service: name=nginx state=started enabled=yes
+
+# - name: Copy the SSL cert and key to the remote server
+#   copy: src={{ ssl_src_dir }}/ dest={{ ssl_dest_dir }}
+
+# - name: Decrypt the SSL key
+#   command: openssl aes-256-cbc -salt -a -d -in {{ ssl_dest_dir }}/nginx.key
+#            -out {{ ssl_dest_dir }}/decrypted.key -k {{ ssl_key_password }}
+#            creates={{ ssl_dest_dir }}/decrypted.key
+
+# - name: Rename the decrypted SSL key
+#   command: mv {{ ssl_dest_dir }}/decrypted.key {{ ssl_dest_dir }}/nginx.key
+#            removes={{ ssl_dest_dir }}/decrypted.key

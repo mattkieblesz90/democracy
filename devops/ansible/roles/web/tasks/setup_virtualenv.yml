@@ -4,6 +4,10 @@
   pip: name=virtualenv
   tags: packages
 
+- name: Install pexpect
+  pip: name=pexpect
+  tags: packages
+
 - name: Create the virtualenv
   command: virtualenv {{ virtualenv_path }} --no-site-packages
            creates={{ virtualenv_path }}/bin/activate

@@ -46,3 +46,6 @@ docs/api/
 
 # DotEnv
 .env
+
+# Django
+conf/local_settings.py
