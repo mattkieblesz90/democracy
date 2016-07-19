@@ -1,5 +1,6 @@
 Django==1.9.7
 Fabric==1.10.2
+fabtools
 django-webpack-loader==0.2.4
 django-development-fabfile
 react

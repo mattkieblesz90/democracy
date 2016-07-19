@@ -13,3 +13,9 @@
   command: forever restart render_server.js
   args:
     chdir: "{{ project_path }}"
+
+- name: pull
+  command: git pull
+  args:
+    chdir: "{{ project_path }}"
+  tags: git.pull
