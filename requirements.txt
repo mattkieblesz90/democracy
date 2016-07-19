@@ -3,6 +3,7 @@ Fabric==1.10.2
 django-webpack-loader==0.2.4
 django-development-fabfile
 react
+celery
 
 # didn't install from dependencies
 pycrypto

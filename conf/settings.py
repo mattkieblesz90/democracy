@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'webpack_loader',
     'react',
+    'djcelery',
+
     'core',
     'forums',
     'networks',
