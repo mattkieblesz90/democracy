@@ -10,7 +10,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'conf.settings')
 
 from django.conf import settings  # noqa
 
-app = Celery('democracy')
+app = Celery()
 
 # Using a string here means the worker does not have to serialize
 # the configuration object.
