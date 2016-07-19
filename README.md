@@ -1,8 +1,8 @@
 # Done:
-1. ~Download vagrant box.
+1. Download vagrant box.
+2. Setup ansible-django environment using vagrant (virtualbox with everything setup).
 
 # TODO:
-2. Setup ansible-django environment using vagrant (virtualbox with everything setup).
 3. Setup deployment cycle using fabric.
 4. Prerender react app via express instead of django views using more extensive boilerplate.
 5. Create initial models for forums and networks.
