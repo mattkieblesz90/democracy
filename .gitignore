@@ -48,5 +48,6 @@ docs/api/
 .env
 
 # Django
+bin/setup_env_vars.sh
 collected_static
 conf/local_settings.py
