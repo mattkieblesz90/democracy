@@ -17,4 +17,3 @@
     - rabbitmq
     - web
     - celery
-    # - nginx

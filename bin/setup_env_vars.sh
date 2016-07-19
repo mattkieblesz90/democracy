@@ -8,4 +8,4 @@ export STATIC_ROOT=/home/mat/Projects/democracy/collected_static
 
 # for ansible file encryption
 export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
-# export ssh_pass=~/.vault_pass.txt
+export ssh_pass="yvlsQ>Zb>D+2I&1\k#Z*XEo/5vu|H1asKypd#Zlxd4;PW+).R-Z?^q'9)X/}_c#"

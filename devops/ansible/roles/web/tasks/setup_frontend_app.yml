@@ -1,0 +1,13 @@
+---
+
+- name: Install node-supervisor
+  shell: npm install -g supervisor
+
+- name: Install frontend app dependencies
+  command: npm install
+  args:
+    chdir: "{{ project_path }}"
+  # notify: restart nginx
+
+- name: Ensure node render server is running
+  command: supervisor render_server.js

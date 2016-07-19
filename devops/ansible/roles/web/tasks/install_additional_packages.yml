@@ -1,7 +1,11 @@
 ---
 
+- name: Add nodejs package to repo
+  shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
 - name: Install additional packages
   apt: name={{ item }} update_cache={{ update_apt_cache }} force=yes state=installed
   with_items:
     - libav-tools
     - expect
+    - nodejs

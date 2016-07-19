@@ -17,6 +17,9 @@
 - include: setup_django_app.yml
   tags: deploy
 
+- include: setup_frontend_app.yml
+  tags: deploy
+
 - include: setup_supervisor.yml
   tags: supervisor
 

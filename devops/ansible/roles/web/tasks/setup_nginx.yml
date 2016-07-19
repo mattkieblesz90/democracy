@@ -17,6 +17,7 @@
             dest=/etc/nginx/sites-available/{{ application_name }}
             backup=yes
   notify: reload nginx
+  tags: nginx.reconfigure
 
 - name: Ensure that the default site is disabled
   file: path=/etc/nginx/sites-enabled/default state=absent
