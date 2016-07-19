@@ -9,5 +9,7 @@
 - name: reload nginx
   service: name=nginx state=reloaded
 
-- name: reload nodeserver
-  service: name=nginx state=reloaded
+- name: restart render server
+  command: forever restart render_server.js
+  args:
+    chdir: "{{ project_path }}"

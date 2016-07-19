@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 CONF_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE_DIR = os.path.join(CONF_DIR)
+BASE_DIR = os.path.join(CONF_DIR, '..')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -141,13 +141,8 @@ STATICFILES_DIRS = [
 
 # python-react
 REACT = {
-    'RENDER': DEBUG,
+    'RENDER': not DEBUG,
     'RENDER_URL': 'http://127.0.0.1:9009/render',
 }
-
-try:
-    from .local_settings import *  # flake8: noqa
-except ImportError:
-    pass
 
 from fabfile_settings import *  # NOQA

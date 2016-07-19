@@ -1,7 +1,7 @@
 ---
 
-- name: Install node-supervisor
-  shell: npm install -g supervisor
+- name: Install forever to manage node servers
+  npm: name=forever global=yes
 
 - name: Install frontend app dependencies
   command: npm install
@@ -9,5 +9,14 @@
     chdir: "{{ project_path }}"
   # notify: restart nginx
 
-- name: Ensure node render server is running
-  command: supervisor render_server.js
+# It would be best if forever would run as a service
+- name: Stop node render server if is running
+  command: forever stop render_server.js
+  ignore_errors: yes
+  args:
+    chdir: "{{ project_path }}"
+
+- name: Start node render server is running
+  command: forever start render_server.js
+  args:
+    chdir: "{{ project_path }}"

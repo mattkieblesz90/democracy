@@ -25,7 +25,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.playbook = "vagrant.yml"
     ansible.host_key_checking = false
     ansible.verbose = "vv"
-    ansible.tags = "nginx.reconfigure"
+    # ansible.tags = "nginx.reconfigure"
+    # ansible.tags = "django.configure"
     ansible.extra_vars = {
       ssh_pass: ENV["ssh_pass"],
     }

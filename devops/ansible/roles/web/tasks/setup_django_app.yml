@@ -9,6 +9,12 @@
     mode: 0744
     state: directory
 
+- name: Initialize settings depending on environment
+  template:
+    src: "__init__.j2"
+    dest: "{{ project_path }}/conf/settings/__init__.py"
+  tags: django.configure
+
 - name: Run Django database migrations
   django_manage:
     command: migrate
