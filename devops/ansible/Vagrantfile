@@ -26,9 +26,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.host_key_checking = false
     ansible.verbose = "vv"
     # ansible.tags = "nginx.reconfigure"
-    # ansible.tags = ["git","django.configure"]
+    ansible.tags = ["nginx.configure"]
     ansible.extra_vars = {
       ssh_pass: ENV["ssh_pass"],
+      ssl_pass: ENV["ssl_pass"],
     }
   end
 end

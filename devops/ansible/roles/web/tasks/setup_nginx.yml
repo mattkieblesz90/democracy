@@ -6,18 +6,31 @@
 
 - name: Copy the SSL certificate to the remote server
   copy: content={{ ssl_crt }} dest={{ ssl_dest_dir }}/{{ application_name }}.crt
-  notify: restart nginx
+  tags: ssl
 
 - name: Copy the SSL private key to the remote server
   copy: content={{ ssl_key }} dest={{ ssl_dest_dir }}/{{ application_name }}.key
-  notify: restart nginx
+  tags: ssl
+
+# TODO: Fix this, we want to be able to put password via prompt each time
+# or do ssh agent forwarding which didn't seem to work, at least with vagrant
+- name: Copy script for ssl key decryption
+  copy:
+    src: "../scripts/decrypt_ssh_key.py"
+    dest: "/tmp/decrypt_ssh_key.py"
+    mode: 0744
+  tags: ssl
+
+- name: Decrypt ssl key
+  command: python /tmp/decrypt_ssh_key.py {{ ssl_dest_dir }}/{{ application_name }}.key "{{ ssl_pass }}"
+  tags: ssl
 
 - name: Create the Nginx configuration file
   template: src={{ application_name }}.j2
             dest=/etc/nginx/sites-available/{{ application_name }}
             backup=yes
-  notify: reload nginx
-  tags: nginx.reconfigure
+  notify: restart nginx
+  tags: nginx.configure
 
 - name: Ensure that the default site is disabled
   file: path=/etc/nginx/sites-enabled/default state=absent
@@ -31,15 +44,3 @@
 
 - name: Ensure Nginx service is started
   service: name=nginx state=started enabled=yes
-
-# - name: Copy the SSL cert and key to the remote server
-#   copy: src={{ ssl_src_dir }}/ dest={{ ssl_dest_dir }}
-
-# - name: Decrypt the SSL key
-#   command: openssl aes-256-cbc -salt -a -d -in {{ ssl_dest_dir }}/nginx.key
-#            -out {{ ssl_dest_dir }}/decrypted.key -k {{ ssl_key_password }}
-#            creates={{ ssl_dest_dir }}/decrypted.key
-
-# - name: Rename the decrypted SSL key
-#   command: mv {{ ssl_dest_dir }}/decrypted.key {{ ssl_dest_dir }}/nginx.key
-#            removes={{ ssl_dest_dir }}/decrypted.key

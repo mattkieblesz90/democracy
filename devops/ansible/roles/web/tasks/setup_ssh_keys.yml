@@ -51,9 +51,6 @@
   shell: python /tmp/decrypt_ssh_key.py {{ ssh_key_file }} "{{ ssh_pass }}"
   tags: deploy
 
-# - name: Decrypt ssh key
-#   shell: openssl rsa -in ~/.ssh/democracy.key -out ~/.ssh/democracy.key
-
 # - name: Copy ssh agent startup script
 #   copy: src=../scripts/ssh_add_key.sh dest=/bin/start-ssh-agent mode=0744
 #   tags: deploy
