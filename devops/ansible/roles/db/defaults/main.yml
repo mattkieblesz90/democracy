@@ -588,15 +588,15 @@ postgresql_transform_null_equals:       off
 
 # If enabled, this will install the contrib packages.
 
-postgresql_contrib: no
+postgresql_contrib: yes
 
 
 # If enabled, will install the [PostGIS] extension
 # from the repositories, at the indicated version.
 # [PostGIS] http://postgis.net/
 
-postgresql_postgis: no
-postgresql_postgis_version: 2.2.2
+postgresql_postgis: yes
+postgresql_postgis_version: 2.2
 
 
 # If enabled, this will install the development headers.

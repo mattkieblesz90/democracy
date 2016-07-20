@@ -15,12 +15,23 @@ ALLOWED_HOSTS = []
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'tmp', 'db.sqlite3'),
+#         'USER': 'democracy',
+#         'PASSWORD': 'democracy',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'tmp', 'db.sqlite3'),
-        'USER': 'democracy',
-        'PASSWORD': 'democracy',
+        'HOST': 'localhost',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'democracy',
+        'USER': 'mat',
+        'PASSWORD': 'mat',
+        'PORT': '5433',
     }
 }
 

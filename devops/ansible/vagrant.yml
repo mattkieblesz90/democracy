@@ -11,9 +11,9 @@
     - postgresql_dev_headers: yes
     - postgresql_contrib: yes
     - postgresql_postgis: yes
-    postgresql_listen_addresses:
-      - '*'
-    postgresql_authentication:
+    - postgresql_listen_addresses:
+        - '*'
+    - postgresql_authentication:
       - type: host
         user: all
         database: all

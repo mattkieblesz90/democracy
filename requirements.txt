@@ -5,6 +5,7 @@ django-webpack-loader==0.2.4
 django-development-fabfile
 react
 celery
+psycopg2
 
 # didn't install from dependencies
 pycrypto
