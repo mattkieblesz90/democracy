@@ -8,6 +8,18 @@
   vars:
     - setup_git_repo: yes
     - update_apt_cache: yes
+    - postgresql_dev_headers: yes
+    - postgresql_contrib: yes
+    - postgresql_postgis: yes
+    postgresql_listen_addresses:
+      - '*'
+    postgresql_authentication:
+      - type: host
+        user: all
+        database: all
+        address: '0.0.0.0/0'
+        method: trust
+
   vars_files:
     - env_vars/base.yml
     - env_vars/vagrant.yml
