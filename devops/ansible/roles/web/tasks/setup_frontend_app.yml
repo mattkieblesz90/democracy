@@ -16,11 +16,11 @@
   args:
     chdir: "{{ project_path }}"
   tags:
-    - deploy
+    - express.stop
 
 - name: Start node render server is running
   command: forever start render_server.js
   args:
     chdir: "{{ project_path }}"
   tags:
-    - deploy
+    - express.start
