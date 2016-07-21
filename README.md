@@ -3,11 +3,11 @@
 2. Setup ansible-django environment using vagrant (virtualbox with everything setup).
 
 # TODO:
-3. Setup deployment cycle using fabric.
+3. Setup deployment playbooks/via fabric.
 4. Prerender react app via express instead of django views using more extensive boilerplate.
 5. Create initial models for forums and networks.
 6. Install django-rest-framework and create API for these models.
-7. Create question list and question views (SIMPLE).
+7. Create base site with following views: network, question (SIMPLE).
 8. Use react-router as routing, redux as a store and react-redux-router as history of routing.
 9. Deploy on vagrant box and test on its ip address.
 10. Using Docker and why/why not.

@@ -9,8 +9,13 @@ import Headline from "../components/Headline"
 const styles = {
   button: {
     cursor: "pointer",
+    padding: "8px 10px",
+    background: "blue",
+    float: "left",
+    "margin-bottom": "10px",
   },
   counter: {
+    clear: "both",
     color: "blue",
     fontSize: "20px",
   }
@@ -21,9 +26,14 @@ const styles = {
 }))
 @Radium
 export default class DemocracyAppContainer extends React.Component {
-  handleClick() {
+  handleIncreaseClick() {
     let {dispatch} = this.props;
     dispatch(counterActions.increaseCounter())
+  }
+
+  handleDecreaseClick() {
+    let {dispatch} = this.props;
+    dispatch(counterActions.decreaseCounter())
   }
 
   render() {
@@ -33,7 +43,10 @@ export default class DemocracyAppContainer extends React.Component {
         <div className="row">
           <div className="col-sm-12">
             <Headline>Democracy App!</Headline>
-            <div style={[styles.button]} onClick={() => this.handleClick()}>INCREASE</div>
+            <div>
+              <div style={[styles.button]} onClick={() => this.handleIncreaseClick()}>INCREASE</div>
+              <div style={[styles.button]} onClick={() => this.handleDecreaseClick()}>DECREASE</div>
+            </div>
             <p style={[styles.counter]}>{counters.clicks}</p>
             <p>{process.env.BASE_API_URL}</p>
           </div>
