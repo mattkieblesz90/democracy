@@ -17,7 +17,6 @@
     src: authorized_keys
     dest: "{{ ssh_key_file | dirname }}/authorized_keys"
     mode: 0600
-  tags: deploy
 
 - name: Copy ssh config
   template:
@@ -30,7 +29,6 @@
     src: known_hosts
     dest: "{{ ssh_key_file | dirname }}/known_hosts"
     mode: 0644
-  tags: deploy
 
 - name: Add ssh agent line to sudoers
   lineinfile:
@@ -49,15 +47,12 @@
 
 - name: Decrypt ssh key
   shell: python /tmp/decrypt_ssh_key.py {{ ssh_key_file }} "{{ ssh_pass }}"
-  tags: deploy
 
 # - name: Copy ssh agent startup script
 #   copy: src=../scripts/ssh_add_key.sh dest=/bin/start-ssh-agent mode=0744
-#   tags: deploy
 
 # - name: Start agent
 #   shell: start-ssh-agent
-#   tags: deploy
 
 # - shell: ssh-add -l
 #   register: result
@@ -69,4 +64,3 @@
 #     command: ssh-add {{ ssh_key_file }}
 #     responses:
 #       '(?i):': "{{ ssh_pass }}"
-#   tags: deploy

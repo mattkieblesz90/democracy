@@ -9,10 +9,14 @@
     key_file: "{{ ssh_key_file }}"
   when: setup_git_repo is defined and setup_git_repo
   notify: restart application
-  tags: git
+  tags:
+    - git
+    - deploy
 
 - name: Delete all .pyc files
   command: find . -name '*.pyc' -delete
   args:
     chdir: "{{ project_path }}"
-  tags: git
+  tags:
+    - git
+    - deploy

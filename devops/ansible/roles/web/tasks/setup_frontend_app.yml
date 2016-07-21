@@ -15,8 +15,12 @@
   ignore_errors: yes
   args:
     chdir: "{{ project_path }}"
+  tags:
+    - deploy
 
 - name: Start node render server is running
   command: forever start render_server.js
   args:
     chdir: "{{ project_path }}"
+  tags:
+    - deploy
