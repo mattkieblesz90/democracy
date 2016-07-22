@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 
 import * as counterActions from "../actions/counterActions"
 import Headline from "../components/Headline"
+// import CustomModal from "../components/Modal"
 
 const styles = {
   button: {
@@ -44,7 +45,8 @@ export default class DemocracyAppContainer extends React.Component {
           <div className="col-sm-12">
             <Headline>Democracy App!</Headline>
             <div>
-              <a className="ui compact floating watch dropdown button">Dupa</a>
+              {/* <CustomModal /> */}
+              {/* <a className="ui compact floating watch dropdown button">Dupa</a> */}
               <div style={[styles.button]} onClick={() => this.handleIncreaseClick()}>INCREASE</div>
               <div style={[styles.button]} onClick={() => this.handleDecreaseClick()}>DECREASE</div>
             </div>

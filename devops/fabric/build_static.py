@@ -36,15 +36,13 @@ def setup_semantic():
 def setup_semantic_react():
     # Clone semantic-react repo if not present and install node modules (for JS replacement)
     # this is just for docs
-    local("if cd tmp/vendors/semantic-react; then git pull; else git clone \
-        https://github.com/mattkieblesz/semantic-react.git tmp/vendors/semantic-react; fi")
+    with lcd("tmp/vendors"):
+        local("if cd semantic-react; then git pull; else git clone \
+        https://github.com/mattkieblesz/semantic-react.git semantic-react; fi")
 
     with lcd("tmp/vendors/semantic-react"):
         local("npm install react react-dom react-addons-shallow-compare")
         local("npm install")
-
-    # here we install semantic-react which will be used in code
-    local("npm install mattkieblesz/semantic-react")
 
 
 def export_js_bundles():

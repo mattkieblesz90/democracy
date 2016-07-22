@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"vendors":[{"name":"vendors.js","path":"/home/mat/Projects/democracy/src/django/static/bundles/prod/vendors.js"}],"DemocracyApp":[{"name":"app.js","path":"/home/mat/Projects/democracy/src/django/static/bundles/prod/app.js"}]}}
+{"status":"error","error":"ModuleNotFoundError","message":"Module not found: Error: Cannot resolve module 'semantic-react' in /home/mat/Projects/democracy/src/react/components"}
