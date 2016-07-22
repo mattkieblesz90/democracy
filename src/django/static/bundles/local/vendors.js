@@ -88,7 +88,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c7df05380c235129950e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "47667ca1a64b93fc9f48"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -611,7 +611,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"DemocracyApp"}[chunkId]||chunkId) + "-" + hotCurrentHash + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + ".app.js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};

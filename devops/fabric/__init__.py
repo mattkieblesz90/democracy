@@ -19,7 +19,8 @@ def vault_files(vault_action='encrypt'):
 
 
 def setup_deploy():
-    pass
+    setup_semantic()
+    setup_semantic_react()
 
 
 def prepare_deploy(vault=False):

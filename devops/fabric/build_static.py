@@ -1,4 +1,10 @@
-from fabric.api import local
+from fabric.api import local, lcd
+from fabric.context_managers import cd
+
+
+__all__ = [
+    "setup_semantic", "setup_semantic_react", "export_js_bundles", "export_css_bundles",
+    "run_styleguide"]
 
 
 def setup_semantic():
@@ -6,24 +12,39 @@ def setup_semantic():
     Clone Semantic-UI and Semantic-UI-Docs repos (specific stable tags).
     """
     # Create vendors folder in tmp directory if not present.
+    local("mkdir -p tmp/vendors")
 
-    # Clone Semantic-UI repo if not present and install node modules
-
-    # Clone Semantic-UI-Docs repo if not present and install node modules
+    # Clone Semantic-UI repo if not present
+    local("if cd tmp/vendors/semantic-ui; then git pull; else git clone --branch 2.2.2 \
+        https://github.com/Semantic-Org/Semantic-UI.git tmp/vendors/semantic-ui; fi")
+    # Clone Semantic-UI-Docs repo if not present
+    local("if cd tmp/vendors/semantic-ui-docs; then git pull; else git clone \
+        https://github.com/Semantic-Org/Semantic-UI-Docs.git tmp/vendors/semantic-ui-docs; fi")
+    # Directory for built docs
+    local("mkdir -p tmp/vendors/docs")
 
     # Copy theme.config and semantic.json files to Semantic-UI repo
+    with cd("tmp/vendors/semantic-ui"):
+        local("npm install")
 
-    # Rebuild docs
-    pass
+    # let's install dockpad locally in docs folder
+    local("cp tmp/vendors/semantic-ui-docs/package.json tmp/vendors/docs/package.json")
+    with lcd("tmp/vendors/docs"):
+        local("npm install")
 
 
 def setup_semantic_react():
     # Clone semantic-react repo if not present and install node modules (for JS replacement)
+    # this is just for docs
+    local("if cd tmp/vendors/semantic-react; then git pull; else git clone \
+        https://github.com/mattkieblesz/semantic-react.git tmp/vendors/semantic-react; fi")
 
-    # Build docs for semantic-react
+    with lcd("tmp/vendors/semantic-react"):
+        local("npm install react react-dom react-addons-shallow-compare")
+        local("npm install")
 
-    # copy semantic-react files to src/react/libs/semantic folder
-    pass
+    # here we install semantic-react which will be used in code
+    local("npm install mattkieblesz/semantic-react")
 
 
 def export_js_bundles():
@@ -47,7 +68,18 @@ def export_css_bundles():
     For css UI we use Semantic-UI framework with it's configuration variables and
     overrides.
     """
+    # copy configs
+    local("cp conf/semantic/semantic.json tmp/vendors/semantic-ui/semantic.json")
+    local("cp conf/semantic/theme.config tmp/vendors/semantic-ui/src/theme.config")
+    local("cp conf/semantic/docs.js tmp/vendors/semantic-ui/tasks/config/docs.js")
+
     # run gulp build-css and build-assets
+    with lcd("tmp/vendors/semantic-ui"):
+        local("gulp build-css")
+        local("gulp build-assets")
+        local("cp dist/semantic.css ../../../src/django/static/bundles/local/styles.css")
+        local("cp dist/semantic.min.css ../../../src/django/static/bundles/stage/styles.css")
+        local("cp dist/semantic.min.css ../../../src/django/static/bundles/prod/styles.css")
 
     # copy min files to stage and bundle and non minified to local bundle
 
@@ -55,12 +87,24 @@ def export_css_bundles():
     pass
 
 
+def setup_styleguide():
+    # Build docs for semantic-ui
+    with lcd("tmp/vendors/semantic-ui"):
+        local("gulp build-docs")
+
+
 def run_styleguide():
     """
     Runs styleguide servers provided by Semantic-UI-Docs and semantic-react
     on different ports.
     """
+    # watch for changes
+    with lcd("tmp/vendors/semantic-ui"):
+        local("gulp serve-docs")
+
     # serve docs for semantic ui
+    with lcd("tmp/vendors/docs"):
+        local("dockpad run")
 
     # serve docs for semantic-react
-    pass
+    # ...

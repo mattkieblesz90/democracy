@@ -14,7 +14,7 @@ module.exports = {
 
   output: {
       path: path.resolve('src/django/static/bundles/local/'),
-      filename: "[name]-[hash].js"
+      filename: "app.js"
   },
 
   externals: [

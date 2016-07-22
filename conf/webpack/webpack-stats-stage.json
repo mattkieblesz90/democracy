@@ -1,1 +1,1 @@
-{"status":"done","chunks":{"vendors":[{"name":"vendors.js","path":"/home/mat/Projects/democracy/src/django/static/bundles/stage/vendors.js"}],"DemocracyApp":[{"name":"DemocracyApp-7055c41585e3ebe3a8fc.js","path":"/home/mat/Projects/democracy/src/django/static/bundles/stage/DemocracyApp-7055c41585e3ebe3a8fc.js"}]}}
+{"status":"done","chunks":{"vendors":[{"name":"vendors.js","path":"/home/mat/Projects/democracy/src/django/static/bundles/stage/vendors.js"}],"DemocracyApp":[{"name":"app.js","path":"/home/mat/Projects/democracy/src/django/static/bundles/stage/app.js"}]}}
