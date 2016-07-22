@@ -32,9 +32,6 @@ tags
 node_modules/
 npm-debug.log
 
-# Brunch folder for temporary files.
-tmp/
-
 # Brunch output folder.
 public/
 
@@ -51,3 +48,6 @@ docs/api/
 bin/setup_env_vars.sh
 collected_static
 conf/settings/__init__.py
+
+# Brunch folder for temporary files (env, semantic)
+tmp/

@@ -1,6 +1,6 @@
 from fabric.api import env, local, run, task
 
-from .react import *
+from .build_static import *
 
 
 def vault_files(vault_action='encrypt'):
@@ -16,3 +16,15 @@ def vault_files(vault_action='encrypt'):
         'ansible-vault %s %s --vault-password-file=%s'
         % (vault_action, " ".join(files_list), "~/.vault_pass.txt")
     )
+
+
+def setup_deploy():
+    pass
+
+
+def prepare_deploy(vault=False):
+    if vault:
+        vault_files()
+
+    export_js_bundles()
+    export_css_bundles()

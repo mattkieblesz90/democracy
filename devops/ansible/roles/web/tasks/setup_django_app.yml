@@ -8,6 +8,8 @@
     dest: "{{ project_path }}/tmp"
     mode: 0744
     state: directory
+  tags:
+    - deploy
 
 - name: Initialize settings depending on environment
   template:
