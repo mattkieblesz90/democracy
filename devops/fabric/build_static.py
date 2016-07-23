@@ -4,7 +4,7 @@ from fabric.context_managers import cd
 
 __all__ = [
     "setup_semantic", "setup_semantic_react", "export_js_bundles", "export_css_bundles",
-    "run_styleguide"]
+    "run_styleguide", "setup_styleguide"]
 
 
 def setup_semantic():
@@ -73,7 +73,6 @@ def export_css_bundles():
     # copy configs
     local("cp conf/semantic/semantic.json tmp/vendors/semantic-ui/semantic.json")
     local("cp conf/semantic/theme.config tmp/vendors/semantic-ui/src/theme.config")
-    local("cp conf/semantic/docs.js tmp/vendors/semantic-ui/tasks/config/docs.js")
 
     # run gulp build-css and build-assets
     with lcd("tmp/vendors/semantic-ui"):
@@ -89,6 +88,12 @@ def export_css_bundles():
 
 
 def setup_styleguide():
+    # Copy docs config
+    local("cp conf/semantic/docs.js tmp/vendors/semantic-ui/tasks/config/docs.js")
+    # local("cp tmp/vendors/semantic-ui-docs/docpad.coffee tmp/vendors/docs/docpad.coffee")
+    # create dir so build docs command doesn't fail
+    local("mkdir -p tmp/vendors/docs/out")
+
     # Build docs for semantic-ui
     with lcd("tmp/vendors/semantic-ui"):
         local("gulp build-docs")
@@ -99,13 +104,14 @@ def run_styleguide():
     Runs styleguide servers provided by Semantic-UI-Docs and semantic-react
     on different ports.
     """
-    # watch for changes
-    with lcd("tmp/vendors/semantic-ui"):
-        local("gulp serve-docs")
-
+    pass
     # serve docs for semantic ui
-    with lcd("tmp/vendors/docs"):
-        local("dockpad run")
+    # with lcd("tmp/vendors/docs"):
+    #     local("docpad run")
+
+    # watch for changes
+    # with lcd("tmp/vendors/semantic-ui"):
+    #     local("gulp serve-docs")
 
     # serve docs for semantic-react
     # ...

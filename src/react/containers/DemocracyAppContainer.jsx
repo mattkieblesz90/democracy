@@ -2,25 +2,12 @@ import React from "react"
 import Radium from "radium"
 
 import { connect } from "react-redux"
+import { Button, Menu, Value, Statistic, Label } from "semantic-react/radium";
 
 import * as counterActions from "../actions/counterActions"
 import Headline from "../components/Headline"
-import CustomModal from "../components/Modal"
+import MyMenuItem from "../components/TopHeader.jsx"
 
-const styles = {
-  button: {
-    cursor: "pointer",
-    padding: "8px 10px",
-    background: "blue",
-    float: "left",
-    "margin-bottom": "10px",
-  },
-  counter: {
-    clear: "both",
-    color: "blue",
-    fontSize: "20px",
-  }
-}
 
 @connect(state => ({
   counters: state.counters,
@@ -41,16 +28,23 @@ export default class DemocracyAppContainer extends React.Component {
     let {counters} = this.props
     return (
       <div className="container">
+        <Menu menuValue={['test1','test3']}>
+            <MyMenuItem menuValue="test1">Item 1</MyMenuItem>
+            <MyMenuItem menuValue="test2">Item 2</MyMenuItem>
+            <MyMenuItem menuValue="test3">Item 3</MyMenuItem>
+        </Menu>
         <div className="row">
           <div className="col-sm-12">
             <Headline>Democracy App!</Headline>
             <div>
-              <CustomModal />
               {/* <a className="ui compact floating watch dropdown button">Dupa</a> */}
-              <div style={[styles.button]} onClick={() => this.handleIncreaseClick()}>INCREASE</div>
-              <div style={[styles.button]} onClick={() => this.handleDecreaseClick()}>DECREASE</div>
+              <Button onClick={() => this.handleIncreaseClick()}>INCREASE</Button>
+              <Button onClick={() => this.handleDecreaseClick()}>DECREASE</Button>
             </div>
-            <p style={[styles.counter]}>{counters.clicks}</p>
+            <Statistic>
+              <Value>{counters.clicks}</Value>
+              <Label>Clicks</Label>
+            </Statistic>
             <p>{process.env.BASE_API_URL}</p>
           </div>
         </div>
