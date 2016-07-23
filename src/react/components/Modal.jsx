@@ -1,4 +1,5 @@
-import { Button, Icon, Header, Content, Description, Actions, LabeledButton } from "semantic-react/radium";
+import React from "react"
+import { Button, Icon, Header, Content, Description, Actions, LabeledButton, Modal } from "semantic-react/radium";
 import { spring } from '../utils/animationUtils';
 
 export default class CustomModal extends React.Component {
@@ -27,21 +28,10 @@ export default class CustomModal extends React.Component {
                 <Button onClick={() => this.setState({ active: true })}>Open modal</Button>
                 <Modal onRequestClose={this.onCloseModal}
                        active={this.state.active}
-                       initialAnimation={{
-                           y: -500
-                       }}
-                       enterAnimation={{
-                           y: 0
-                       }}
-                       leaveAnimation={{
-                           y: spring(800, { stiffness: 800, damping: 40, precision: 1 })
-                       }}
-                       onAnimationStyle={this.onAnimationStyle}
                 >
                     <Icon name="close" onClick={this.onCloseModal.bind(this)}/>
                     <Header>Select a photo</Header>
                     <Content image>
-                        <Image size="medium" wrapComponent src="http://semantic-ui.com/images/avatar2/large/rachel.png"/>
                         <Description>
                             <Header>Default profile image</Header>
                             <p>

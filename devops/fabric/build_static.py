@@ -53,6 +53,10 @@ def export_js_bundles():
     and push our code.
 
     """
+    local("mkdir -p src/react/libs/semantic-react")
+    local('rm -rf src/react/libs/semantic-react/*')
+    local("cp -r tmp/vendors/semantic-react/src/components/* src/react/libs/semantic-react/")
+
     local('rm -rf src/django/static/bundles/local/*.js')
     local('rm -rf src/django/static/bundles/stage/*.js')
     local('rm -rf src/django/static/bundles/prod/*.js')
@@ -74,15 +78,14 @@ def export_css_bundles():
     # run gulp build-css and build-assets
     with lcd("tmp/vendors/semantic-ui"):
         local("gulp build-css")
-        local("gulp build-assets")
         local("cp dist/semantic.css ../../../src/django/static/bundles/local/styles.css")
         local("cp dist/semantic.min.css ../../../src/django/static/bundles/stage/styles.css")
         local("cp dist/semantic.min.css ../../../src/django/static/bundles/prod/styles.css")
 
-    # copy min files to stage and bundle and non minified to local bundle
-
-    # copy assets to each assets bundle folders
-    pass
+        local("gulp build-assets")
+        local("cp -r dist/themes ../../../src/django/static/bundles/local/")
+        local("cp -r dist/themes ../../../src/django/static/bundles/stage/")
+        local("cp -r dist/themes ../../../src/django/static/bundles/prod/")
 
 
 def setup_styleguide():

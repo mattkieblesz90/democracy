@@ -43,7 +43,6 @@
     "react-router-redux": "^4.0.5",
     "redux": "^3.3.1",
     "redux-thunk": "^1.0.3",
-    "semantic-react": "mattkieblesz/semantic-react",
     "yargs": "^3.29.0"
   }
 }
