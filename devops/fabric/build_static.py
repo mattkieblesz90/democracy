@@ -53,9 +53,9 @@ def export_js_bundles():
     and push our code.
 
     """
-    local("mkdir -p src/react/libs/semantic-react")
-    local('rm -rf src/react/libs/semantic-react/*')
-    local("cp -r tmp/vendors/semantic-react/src/components/* src/react/libs/semantic-react/")
+    # local("mkdir -p src/react/libs/semantic-react")
+    # local('rm -rf src/react/libs/semantic-react/*')
+    # local("cp -r tmp/vendors/semantic-react/src/components/* src/react/libs/semantic-react/")
 
     local('rm -rf src/django/static/bundles/local/*.js')
     local('rm -rf src/django/static/bundles/stage/*.js')
